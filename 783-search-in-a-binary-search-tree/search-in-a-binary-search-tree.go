@@ -13,13 +13,10 @@ func searchBST(root *TreeNode, val int) *TreeNode {
     if root.Val == val {
         return root
     }
-    leftSearch := searchBST(root.Left, val)
-    if leftSearch != nil {
-        return leftSearch
-    }
-    rightSearch := searchBST(root.Right, val)
-    if rightSearch != nil {
-        return rightSearch
+    if root.Val > val {
+        return searchBST(root.Left, val)
+    } else {
+        return searchBST(root.Right, val)
     }
 
     return nil

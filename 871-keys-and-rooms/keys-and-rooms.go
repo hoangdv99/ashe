@@ -1,18 +1,18 @@
 func canVisitAllRooms(rooms [][]int) bool {
-    visited := []int{}
+    visited := make(map[int]bool)
 
     var dfs func(int)
 
     dfs = func(roomNum int) {
-        if slices.Contains(visited, roomNum) {
+        if visited[roomNum] {
             return
         }
-        visited = append(visited, roomNum)
+        visited[roomNum] = true
         for _, key := range rooms[roomNum] {
             dfs(key)
         }
     }
     dfs(0)
-    
+
     return len(visited) == len(rooms)
 }
